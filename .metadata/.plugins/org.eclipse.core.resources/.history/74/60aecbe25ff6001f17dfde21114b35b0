@@ -1,0 +1,13 @@
+package com.dduongdev;
+
+public class Main {
+	public static void main(String[] args) {
+		Runnable firstRequest = new Runnable() {
+			
+			@Override
+			public void run() {
+				ConfigurationManager configs = ConfigurationManager.getInstance();
+			}
+		};
+	}
+}

@@ -1,0 +1,10 @@
+#Updated Configuration
+#Sat Mar 01 23:14:08 ICT 2025
+app.mode=production
+database.driver=com.mysql.cj.jdbc.MysqlDataSource
+database.password=secret
+database.url=jdbc\:mysql\://localhost\:3306/Postify
+database.username=user_pool-1-thread-1
+server.ip=127.0.0.1
+server.port=8080
+thread.config=value_pool-1-thread-2

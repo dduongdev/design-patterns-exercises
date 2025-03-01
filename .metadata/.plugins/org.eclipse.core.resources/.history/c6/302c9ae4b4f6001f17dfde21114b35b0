@@ -1,0 +1,55 @@
+package com.dduongdev;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class Main {
+    public static void main(String[] args) {
+        ConfigurationManager configManager = ConfigurationManager.getInstance();
+        
+        ExecutorService executor = Executors.newFixedThreadPool(5);
+
+        Runnable readConfigTask = () -> {
+            String dbUrl = configManager.getConfiguration("database.url");
+            System.out.println(Thread.currentThread().getName() + " - Database URL: " + dbUrl);
+        };
+
+        Runnable updateConfigTask = () -> {
+            String threadName = Thread.currentThread().getName();
+            configManager.updateConfiguration("database.username", "user_" + threadName);
+            System.out.println(threadName + " - Updated database.username to: " + configManager.getConfiguration("database.username"));
+        };
+
+        Runnable addConfigTask = () -> {
+            String threadName = Thread.currentThread().getName();
+            configManager.addConfiguration("thread.config", "value_" + threadName);
+            System.out.println(threadName + " - Added thread.config: " + configManager.getConfiguration("thread.config"));
+        };
+
+        Runnable dbConnectionTask = () -> {
+            try {
+                Connection connection = configManager.getDatabaseConnection();
+                if (configManager.isDatabaseConnected()) {
+                    System.out.println(Thread.currentThread().getName() + " - ✅ Database connected successfully!");
+                } else {
+                    System.out.println(Thread.currentThread().getName() + " - ❌ Database connection failed!");
+                }
+            } catch (SQLException e) {
+                System.err.println(Thread.currentThread().getName() + " - Database error: " + e.getMessage());
+            }
+        };
+
+        // Thực thi các task đồng thời
+        for (int i = 0; i < 3; i++) {
+            executor.execute(readConfigTask);
+            executor.execute(updateConfigTask);
+            executor.execute(addConfigTask);
+            executor.execute(dbConnectionTask);
+        }
+
+        // Đóng executor sau khi các task hoàn thành
+        executor.shutdown();
+    }
+}

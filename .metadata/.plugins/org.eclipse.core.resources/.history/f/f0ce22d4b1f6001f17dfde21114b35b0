@@ -1,0 +1,7 @@
+#Updated Configuration
+#Sat Mar 01 22:25:04 ICT 2025
+database.driver=com.mysql.cj.jdbc.MysqlDataSource
+database.password=secret
+database.username=admin
+server.ip=127.0.0.1
+server.port=8080
