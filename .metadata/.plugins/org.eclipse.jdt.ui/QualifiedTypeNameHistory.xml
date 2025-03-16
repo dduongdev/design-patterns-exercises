@@ -8,4 +8,12 @@
     <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="java.sql.DriverManager"/>
     <fullyQualifiedTypeName name="java.util.concurrent.ConcurrentHashMap"/>
+    <fullyQualifiedTypeName name="com.dduongdev.storages.CloudStorage"/>
+    <fullyQualifiedTypeName name="com.dduongdev.entities.Document"/>
+    <fullyQualifiedTypeName name="com.dduongdev.entities.DocxDocument"/>
+    <fullyQualifiedTypeName name="com.dduongdev.entities.PdfToDocxAdapter"/>
+    <fullyQualifiedTypeName name="com.dduongdev.entities.PdfDocument"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>
